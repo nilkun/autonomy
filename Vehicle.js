@@ -1,8 +1,8 @@
 import Vector from "../shared/engine/Vector2.js"
-import Steering from "./Steering.js";
-class Vehicle {
+import Steering from "./SteeringNew.js";
+class Vehicle extends Steering {
     constructor(x = 0, y = 0) {
-
+        super();
         // Position
         this.velocity = new Vector;
         this.heading = new Vector;
@@ -23,7 +23,7 @@ class Vehicle {
         // Not quite implemented yet
         this.deceleration = 0.3;
 
-        this.size = 10;
+        this.size = 5;
 
         this.init();
     }

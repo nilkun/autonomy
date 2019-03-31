@@ -8,22 +8,22 @@ const arriveButton = document.querySelector(".arrive");
 const wanderButton = document.querySelector(".wander");
 const addBallButton = document.querySelector(".addBall");
 
-seekButton.addEventListener("click", () => plane.steering = plane.behaviours.seek);
-fleeButton.addEventListener("click", () => plane.steering = plane.behaviours.flee);
-arriveButton.addEventListener("click", () => plane.steering = plane.behaviours.arrive);
+seekButton.addEventListener("click", () => plane.toggleSeek());
+fleeButton.addEventListener("click", () => plane.toggleFlee());
+arriveButton.addEventListener("click", () => plane.toggleArrive());
 addBallButton.addEventListener("click", () => gameWorld.addBall());
-wanderButton.addEventListener("click", () => plane.steering = plane.behaviours.wander);
+wanderButton.addEventListener("click", () => plane.toggleWander());
 
 
-const viewport = new Viewport();
+const viewport = new Viewport(600, 300);
 
 viewport.canvas.addEventListener("click", (event) => {
     const loc = viewport.getMouse(event);
     plane.target.set(loc.x, loc.y);
 });
 
-const plane = new Vehicle(400, 300);
-const plane2 = new Vehicle(750, 150);
+const plane = new Vehicle(200, 100);
+const plane2 = new Vehicle(450, 150);
 plane2.maxSpeed *= 0.6;
 plane2.setTarget(plane.position);
 plane2.lockedOn = plane;

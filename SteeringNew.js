@@ -2,15 +2,45 @@ import Vector from "../shared/engine/Vector2.js";
 
 class Steering {
     constructor() {
+        this.arriveIsOn = false;
+        this.seekIsOn = false;
+        this.fleeIsOn = false;
+        this.seekIsOn = false;
+        this.wanderIsOn = false;
     };
+
+    toggleArrive() {
+        this.arriveIsOn =! this.arriveIsOn;
+    }
+
+    toggleSeek() {
+        this.seekIsOn =! this.SeekIsOn;
+    }
+
+    toggleFlee() {
+        this.fleeIsOn =! this.fleeIsOn;
+    }
+
+    togglePursuit() {
+        this.pursuitIsOn =! this.pursuitIsOn;
+    }
+
+
+    seek() {
+        // (target - position) scaled to maxSpeed, and then velocity is subtracted
+        return this.target.subtracted(this.position)
+            .normalized()
+            .scaled(this.maxSpeed)
+            .subtracted(this.velocity);
+    }
+
+
+
 
     stopped() {
         return new Vector;
     }
-    seek() {
-        // Target is a vector
-        return this.target.subtracted(this.position).normalized().scaled(this.maxSpeed).subtracted(this.velocity);
-    }
+
     flee() {
         return this.position.subtracted(this.target.subtracted(this.position).normalized().scaled(this.maxSpeed));
     }
@@ -124,17 +154,3 @@ class Steering {
 }
 
 export default Steering;
-
-// rotate
-
-// local to global coords
-// const global = new Vector; // unknown;
-// const local = new Vector; // coordinates in local system;
-// const localPos = new Vector;
-// const angle = localPos.angle();
-// perpendicular;
-// solution
-// global.x = ((local.x - localPos.x) * Math.cos(angle))
-//     + ((local.y - localPos.y) * Math.sin(angle));
-// global.y = -((local.x - localPos.x) * Math.sin(angle))
-//     + ((local.y - localPos.y) * Math.cos(angle));
